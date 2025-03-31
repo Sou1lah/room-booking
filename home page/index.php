@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (!isset($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,17 +28,17 @@
 
             <!--pop up winw-->
             <div id="loginModal" class="pop">
-                <div class="pop-content">
-                    <span class="close" onclick="closeLoginModal()">&times;</span>
-                    <h2>Login</h2>
-                    <form>
-                        <label for="username">Username</label><br>
-                        <input type="text" id="username" placeholder="Enter your username"><br><br>
-                        <label for="password">Password</label><br>
-                        <input type="password" id="password" placeholder="Enter your password"><br><br>
-                        <button type="submit">Login</button>
-                    </form>
-                </div>
+              <div class="pop-content">
+                <span class="close" onclick="closeLoginModal()">&times;</span>
+                <h2>Login</h2>
+                <form>
+                  <label>Username</label><br>
+                  <input type="text"><br><br>
+                  <label>Password</label><br>
+                  <input type="password"><br><br>
+                  <button type="submit">Login</button>
+                </form>
+              </div>
             </div>
                         <a href="profile">
                 <img src="" alt="">
@@ -62,63 +69,72 @@
                 <option value="most-recent">Most Recent</option>
             </select>
         </div>
-        <div class="filter-options">
-            <label for="sort">price:</label>
-            <select id="sort" name="sort">
-                <option value="popular">ascending</option>
-                <option value="most-recent">descending</option>
-                
-            </select>
+    </div>
+    <div class="add-card-container">
+        <button id="add-card-btn" class="add-card-btn">Add New Card</button>
+    </div>
+    <section class="listings">
+        <div class="listing-card">
+            <div class="like-btn-container">
+                <button class="like-btn"></button>
+            </div>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQd9kGl3tRP4NToluVBrGaXBBMooz8uRmF4cw&s" alt="Room Image">
+            <a href="room details">
+                <h3>Residotel Lyon Part Dieu</h3>
+                <p>3e arrondissement</p>
+                <p><span class="rating">8.0</span> Très bien (972 avis)</p>
+                <p class="price">473€ <span class="old-price">468€</span></p>
+            </a>
         </div>
-    </div>
-    <div class="main-container">
-        <section class="listings">
-            <div class="listing-card">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQd9kGl3tRP4NToluVBrGaXBBMooz8uRmF4cw&s">
-                <a href="room details">
-                    <h3>Residotel Lyon Part Dieu</h3>
-                    <p>3e arrondissement</p>
-                    <p><span class="rating">8.0</span> Très bien (972 avis)</p>
-                    <p class="price">473€ <span class="old-price">468€</span></p>
-                </a>
+        <div class="listing-card">
+            <div class="like-btn-container">
+                <button class="like-btn"></button>
             </div>
-            <div class="listing-card">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIMgdVNfF_mbv_WdanDTiPTVpYmSFJuJAFdQ&s">
-                <a href="room details">
-                    <h3>Tout près de Lyon dans la verdure avec les lamas !!!</h3>
-                    <p>Oullins</p>
-                    <p><span class="rating">9.8</span> Exceptionnel (29 avis)</p>
-                    <p class="price">2629€</p>
-                </a>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIMgdVNfF_mbv_WdanDTiPTVpYmSFJuJAFdQ&s" alt="Room Image">
+            <a href="room details">
+                <h3>Tout près de Lyon dans la verdure avec les lamas !!!</h3>
+                <p>Oullins</p>
+                <p><span class="rating">9.8</span> Exceptionnel (29 avis)</p>
+                <p class="price">2629€</p>
+            </a>
+        </div>
+        <div class="listing-card">
+            <div class="like-btn-container">
+                <button class="like-btn"></button>
             </div>
-            <div class="listing-card">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuaFEX3oOvpkr_jdtAt2JeC64G5YNgnRuXaw&s">
-                <a href="room details">
-                    <h3>CROIX ROUSSE CENTRE</h3>
-                    <p>La Croix-Rousse</p>
-                    <p><span class="rating">10.0</span> Exceptionnel (11 avis)</p>
-                    <p class="price">753€</p>
-                </a>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuaFEX3oOvpkr_jdtAt2JeC64G5YNgnRuXaw&s" alt="Room Image">
+            <a href="room details">
+                <h3>CROIX ROUSSE CENTRE</h3>
+                <p>La Croix-Rousse</p>
+                <p><span class="rating">10.0</span> Exceptionnel (11 avis)</p>
+                <p class="price">753€</p>
+            </a>
+        </div>
+        <div class="listing-card">
+            <div class="like-btn-container">
+                <button class="like-btn"></button>
             </div>
-            <div class="listing-card">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTg3iKko8U-5F-oEfMojQgpZZ548_c-ER5Y_g&s">
-                <a href="room details">
-                    <h3>Curiosité - 2 chambres- proche Opéra</h3>
-                    <p>La Presqu'Île</p>
-                    <p><span class="rating">10.0</span> Exceptionnel (12 avis)</p>
-                    <p class="price">1502€</p>
-                </a>    
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuaFEX3oOvpkr_jdtAt2JeC64G5YNgnRuXaw&s" alt="Room Image">
+            <a href="room details">
+                <h3>CROIX ROUSSE CENTRE</h3>
+                <p>La Croix-Rousse</p>
+                <p><span class="rating">10.0</span> Exceptionnel (11 avis)</p>
+                <p class="price">753€</p>
+            </a>
+        </div>
+        <div class="listing-card">
+            <div class="like-btn-container">
+                <button class="like-btn"></button>
             </div>
-        </section>
-        <iframe id="map"
-        width="100%"
-        height="500"
-        frameborder="0"
-        style="border:0"
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2483.680380060589!2d-0.127758684230356!3d51.507350879634!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487604c38c8cd1d9%3A0xb78f2474b9a45aa9!2sBig%20Ben!5e0!3m2!1sen!2suk!4v1632921616784!5m2!1sen!2suk"
-        allowfullscreen>
-    </iframe>
-    </div>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTg3iKko8U-5F-oEfMojQgpZZ548_c-ER5Y_g&s" alt="Room Image">
+            <a href="room details">
+                <h3>Curiosité - 2 chambres- proche Opéra</h3>
+                <p>La Presqu'Île</p>
+                <p><span class="rating">10.0</span> Exceptionnel (12 avis)</p>
+                <p class="price">1502€</p>
+            </a>    
+        </div>
+    </section>
     <hr>
     <div class="info-container">
         <div class="info-card">

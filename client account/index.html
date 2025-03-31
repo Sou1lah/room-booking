@@ -18,11 +18,34 @@
             <a href="../booking page/index.html">Book</a>
             <a href="Publish an ad">Publish an ad</a>
             <a href="Help">Help</a>
-            <a href="../login/index.html">Login ▸</a> 
-            <a href="profile">
+            <a href="#" onclick="openLoginModal()">Login ▸</a>
+
+            <!--pop up winw-->
+            <div id="loginModal" class="pop">
+              <div class="pop-content">
+                <span class="close" onclick="closeLoginModal()">&times;</span>
+                <h2>Login</h2>
+                <form>
+                  <label>Username</label><br>
+                  <input type="text"><br><br>
+                  <label>Password</label><br>
+                  <input type="password"><br><br>
+                  <button type="submit">Login</button>
+                </form>
+              </div>
+            </div>
+                        <a href="profile">
                 <img src="" alt="">
             </a>           
         </nav>
+        <script>
+            function openLoginModal() {
+              document.getElementById("loginModal").style.display = "block";
+            }
+            function closeLoginModal() {
+              document.getElementById("loginModal").style.display = "none";
+            }
+            </script>            
     </header>
     <main>
         <div class="container dashboard-container">

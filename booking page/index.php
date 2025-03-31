@@ -1,4 +1,8 @@
+<?php 
+session_start();
+?>
 <!DOCTYPE html>
+<a href="http://localhost/room-booking-website/booking%20page/index.php" target="_blank">Open this page in browser</a>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -17,59 +21,48 @@
             <a href="../booking page/index.html">Book</a>
             <a href="Publish an ad">Publish an ad</a>
             <a href="Help">Help</a>
-            <a href="../login/index.html">Login ▸</a> 
-            <a href="profile">
+            <a href="#" onclick="openLoginModal()">Login ▸</a>
+                        <a href="profile">
                 <img src="" alt="">
             </a>           
         </nav>
     </header>
         <div class="main-content">
-            <div class="form-section">
-                <div>
-                    <h2 class="section-title">Contact Information:</h2>
-                    <div class="form-row">
-                        <input type="text" placeholder="Name" class="half-width">
-                        <input type="text" placeholder="Family name" class="half-width">
-                    </div>
-                    <div class="form-row">
-                        <input type="email" placeholder="Email" class="full-width">
-                    </div>
-                    <div class="form-row">
-                        <input type="text" placeholder="+213" class="phone-prefix">
-                        <input type="text" placeholder="Phone" class="phone-number">
-                    </div>
-                </div>
-                
+        <form action="form.php" method="post" enctype="multipart/form-data">
+            <div class="form-section">                
                 <div>
                     <h2 class="section-title">Tenant Information:</h2>
                     <div class="form-row">
-                        <input type="text" placeholder="Name" class="half-width">
-                        <input type="text" placeholder="Family name" class="half-width">
+                        <input type="text" name="name" placeholder="Name" class="half-width" required>
+                        <input type="text" name="family_name" placeholder="Family name" class="half-width" required>
                     </div>
                     <div class="form-row">
-                        <input type="email" placeholder="Email" class="full-width">
+                        <input type="email" name="email" placeholder="Email" class="full-width" required>
                     </div>
                     <div class="form-row">
-                        <input type="text" placeholder="+213" class="phone-prefix">
-                        <input type="text" placeholder="Phone" class="phone-number">
+                        <input type="tel" name="phone" placeholder="Phone" class="phone-number" pattern="[0-9]{10}" required>
+                    </div>
+                </div>
+                <div>
+                    <h2 class="section-title">Contact Information (in case of emergency):</h2>
+                    <div class="form-row">
+                        <input type="tel" name="emergency_contact" placeholder="Phone" class="phone-number" pattern="[0-9]{10}" required>
                     </div>
                 </div>
                 
                 <div>
                     <h2 class="section-title">Payment Information:</h2>
                     <div class="form-row">
-                        <input type="text" placeholder="Name" class="half-width">
-                        <input type="text" placeholder="Family name" class="half-width">
+                        <input type="text" name="card_number" placeholder="Card number" class="full-width" pattern="[0-9]{16}" required>
                     </div>
                     <div class="form-row">
-                        <input type="text" placeholder="Card number" class="full-width">
-                    </div>
-                    <div class="form-row">
-                        <input type="text" placeholder="Card Code" class="half-width">
-                        <input type="text" placeholder="Expiration date" class="half-width">
+                        <input type="text" name="card_code" placeholder="Card Code" class="half-width" pattern="[0-9]{3,4}" required>
+                        <input type="text" name="card_expiration" placeholder="Expiration date (MM/YY)" class="half-width" pattern="(0[1-9]|1[0-2])\/[0-9]{2}" required>
                     </div>
                 </div>
             </div>
+        <button type="submit" class="confirm-btn">Confirm Booking</button>
+        </form>
             
             <div class="form-section">
                 <div class="property-details">
@@ -84,10 +77,6 @@
                     </div>
                 </div>
                 
-                <div class="checkbox-container">
-                    <input type="checkbox" id="not-subscriber">
-                    <label for="not-subscriber">The tenant is not the subscriber</label>
-                </div>
                 
                 <div class="price-details">
                     <div class="price-row">
@@ -102,7 +91,6 @@
             </div>
         </div>
         
-        <button class="confirm-btn">Confirm Booking</button>
         
         <footer>
             <div class="footer-section">

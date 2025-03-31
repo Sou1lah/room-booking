@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -16,83 +20,83 @@
             <a href="../booking page/index.html">Book</a>
             <a href="Publish an ad">Publish an ad</a>
             <a href="Help">Help</a>
-            <a href="../Registration Page/index.html">Login ▸</a> 
-            <a href="profile">
+            <a href="#" onclick="openLoginModal()">Login ▸</a>
+
+            <!--pop up winw-->
+            <div id="loginModal" class="pop">
+              <div class="pop-content">
+                <span class="close" onclick="closeLoginModal()">&times;</span>
+                <h2>Login</h2>
+                <form>
+                  <label>Username</label><br>
+                  <input type="text"><br><br>
+                  <label>Password</label><br>
+                  <input type="password"><br><br>
+                  <button type="submit">Login</button>
+                </form>
+              </div>
+            </div>
+                        <a href="profile">
                 <img src="" alt="">
             </a>           
         </nav>
     </header>
-
     <main>
         <div class="card">
             <div class="card-header">
                 <div class="card-title">Subscription</div>
             </div>
             <div class="card-content">
-                <form>
+                <form action="form.php" method="post" enctype="multipart/form-data"> 
+
                     <div class="usr-option-con">
                         <label class="usr-option">
                             <input type="radio" name="user-type" value="tenant" checked>
                             Tenant
                         </label>
                         <label class="usr-option">
-                            <input type="radio" name="user-type" value="owner" >
+                            <input type="radio" name="user-type" value="owner">
                             Owner
                         </label>
                     </div>
 
                     <div class="form-row">
                         <div class="form-col">
-                            <input type="text" placeholder="Name">
+                            <input type="text" name="name" placeholder="Name" required>
                         </div>
                         <div class="form-col">
-                            <input type="text" placeholder="Family name">
+                            <input type="text" name="family-name" placeholder="Family name" required>
                         </div>
                     </div>
 
                     <div class="form-row">
-                        <div class="form-col small">
-                            <input type="text" placeholder="+213">
-                        </div>
                         <div class="form-col large">
-                            <input type="text" placeholder="Phone">
+                            <input type="text" name="phone" placeholder="Phone" required>
                         </div>
                     </div>
 
                     <div class="form-col large">
-                        <input type="email" placeholder="Email">
+                        <input type="email" name="email" placeholder="Email" required>
                     </div>
 
                     <div class="form-col large">
-                        <input type="password" placeholder="Password">
+                        <input type="password" name="password" placeholder="Password" required>
                     </div>
 
                     <div class="form-row">
                         <div class="form-col">
-                            <button type="button" class="btn btn-upload">
+                            <label class="btn btn-upload">
                                 Profile photo
-                            </button>
-                        </div>
-                        <div class="form-col">
-                            <button type="button" class="btn btn-upload">
-                                ID document photo
-                            </button>
+                                <input type="file" name="profile-photo" accept="image/*" style="display: none;" required>
+                            </label>
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-col">
-                            <input type="text" placeholder="Address">
-                        </div>
-                        <div class="form-col">
-                            <input type="text" placeholder="Postal code">
+                            <input type="text" name="address" placeholder="Address" required>
                         </div>
                     </div>
-
-                    <div class="form-col large">
-                        <input type="text" placeholder="RIB">
-                    </div>
-
                     <button type="submit" class="btn">Subscribe</button>
                 </form>
             </div>
@@ -131,3 +135,4 @@
     </footer>
 </body>
 </html>
+?>

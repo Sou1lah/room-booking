@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,9 +22,10 @@
             <a href="../booking page/index.html">Book</a>
             <a href="Publish an ad">Publish an ad</a>
             <a href="Help">Help</a>
-            <a href="../login/index.html">Login ▸</a> 
+            <a href="#" onclick="openLoginModal()">Login ▸</a>
+
             <a href="profile">
-                <img src="" alt="">
+            <img src="" alt="">
             </a>           
         </nav>
     </header>

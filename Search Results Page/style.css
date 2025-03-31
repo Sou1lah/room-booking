@@ -213,4 +213,61 @@ footer {
     border-radius: 4px;
     margin-right: 10px;
 }
+/* Pop-up window styles */
+.pop {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+  }
+  .pop h2{
+    text-align: center;
+}
 
+.pop-content {
+    background: #ffffff;
+    padding: 20px;
+    width: 300px;
+    margin: 100px auto;
+    border-radius: 10px;
+    position: relative;
+    color: #000000;
+    box-shadow: 0 4px 10px rgba(0, 0, 0);
+  }
+
+
+  .close {
+    position: absolute;
+    top: 10px; right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+
+.close:hover {
+    color: red;
+}
+
+.pop-content form input {
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    margin-right: 0px;
+    border-radius: 5px;
+}
+
+.pop-content form button {
+    padding: 10px 20px;
+    background-color: #0073e6;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.pop-content form button:hover {
+    background-color: #005bb5;
+}
