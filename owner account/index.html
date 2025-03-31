@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DZHouse - User Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="../home page/index.html">
+                DZ HOUSE
+            </a>
+        </div>
+        <nav class="nav">
+            <a href="../booking page/index.html">Book</a>
+            <a href="Publish an ad">Publish an ad</a>
+            <a href="Help">Help</a>
+            <a href="../login/index.html">Login ▸</a> 
+            <a href="profile">
+                <img src="" alt="">
+            </a>           
+        </nav>
+    </header>
+    <main>
+        <div class="container dashboard-container">
+            <div class="dashboard-left">
+                <div class="profile-section">
+                    <div class="section-header">Profile:</div>
+                    
+                    <div class="form-group">
+                        <input type="text" placeholder="Name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="text" placeholder="Family name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="text" placeholder="Phone">
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="email" placeholder="Email">
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="text" placeholder="Phone">
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="email" placeholder="Email">
+                    </div>
+                    
+                    <div class="photo-buttons">
+                        <button class="id-photo-btn">ID photo</button>
+                        <button class="profile-photo-btn">Profile photo</button>
+                    </div>
+                </div>
+                
+                <div class="contact-section">
+                    <div class="section-header">Contact tenant:</div>
+                    <div class="message-box">
+                        <div class="message">
+                            <p>Hello, i can't find the keys !</p>
+                        </div>
+                    </div>
+                    <div class="message-input">
+                        <input type="text" placeholder="type a message ...">
+                        <button class="send-btn">Send</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="dashboard-right">
+                <div class="announcements-section">
+                    <div class="section-header">
+                        Announcements:
+                        <button class="add-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                    
+                    <div class="table">
+                        <div class="table-header">
+                            <div class="col-id">#</div>
+                            <div class="col-announcement">Announcement</div>
+                            <div class="col-actions">Updates</div>
+                        </div>
+                        
+                        <div class="table-row">
+                            <div class="col-id">20301</div>
+                            <div class="col-announcement">Le byon japonais de Lyon</div>
+                            <div class="col-actions">
+                                <button class="delete-btn"><i class="fas fa-times"></i></button>
+                                <button class="edit-btn"><i class="fas fa-wrench"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="booking-section">
+                    <div class="section-header">Booking requests:</div>
+                    
+                    <div class="table">
+                        <div class="table-header">
+                            <div class="col-tenant">Tenant</div>
+                            <div class="col-announcement">Announcement</div>
+                            <div class="col-status">Res state</div>
+                        </div>
+                        
+                        <div class="table-row">
+                            <div class="col-tenant">20301</div>
+                            <div class="col-announcement">Le byon japonais de Lyon</div>
+                            <div class="col-status">
+                                <span class="status-approved"><i class="fas fa-check"></i></span>
+                                <span class="status-rejected"><i class="fas fa-times"></i></span>
+                            </div>
+                        </div>
+                        
+                        <div class="table-row">
+                            <div class="col-tenant">20301</div>
+                            <div class="col-announcement">Le byon japonais de Lyon</div>
+                            <div class="col-status">
+                                <span class="status-approved"><i class="fas fa-check"></i></span>
+                                <span class="status-rejected"><i class="fas fa-times"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-column">
+                <h3>About HomeAway</h3>
+                <ul>
+                    <li><a href="#">Post a Listing</a></li>
+                    <li><a href="#">Trust & Safety</a></li>
+                    <li><a href="#">Partner Resources</a></li>
+                    <li><a href="#">Travel Guides</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="#">Who are we?</a></li>
+                    <li><a href="#">Affiliation / Contact us</a></li>
+                    <li><a href="#">Terms of use</a></li>
+                    <li><a href="#">Privacy policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Meet our family</h3>
+                <ul>
+                    <li><a href="#">Vrbo</a></li>
+                    <li><a href="#">Abritel.fr</a></li>
+                    <li><a href="#">FeWo-direkt.de</a></li>
+                    <li><a href="#">Bookabach.co.nz</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
