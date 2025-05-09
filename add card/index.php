@@ -50,12 +50,16 @@ exit();
             </div>
             <div class="form-group">
                 <label for="image">Upload Images</label>
-                <input type="file" id="image" name="image[]" accept="image/*" multiple>
+                <input type="file" id="image" name="image" accept="image/*">
             </div>
             <div class="form-group">
                 <button type="submit">Add Apartment</button>
             </div>
         </form>
+        <a href="../apartment details/index.php?id=<?php echo $apartment['id']; ?>">
+            <h3><?php echo htmlspecialchars($apartment['title']); ?></h3>
+            <p><?php echo htmlspecialchars($apartment['location']); ?></p>
+        </a>
     </div>
 </body>
 </html>

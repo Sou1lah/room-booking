@@ -1,5 +1,10 @@
 <?php
+// filepath: /opt/lampp/htdocs/room-booking-website/apartment details/index.php
 session_start();
+$baseUrl = "http://localhost/room-booking-website/apartment%20details/";
+
+// Include the logic from form.php
+include 'form.php';
 ?>
 
 <!DOCTYPE html>
@@ -7,7 +12,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DZHouse - Beautiful university apartment in Villeurbanne</title>
+    <title>'(<?php echo htmlspecialchars($apartment['location']); ?></title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -23,10 +28,9 @@ session_start();
             <a href="Publish an ad">Publish an ad</a>
             <a href="Help">Help</a>
             <a href="#" onclick="openLoginModal()">Login ▸</a>
-
             <a href="profile">
-            <img src="" alt="">
-            </a>           
+                <img src="" alt="">
+            </a>
         </nav>
     </header>
 
@@ -34,7 +38,7 @@ session_start();
         <div class="container">
             <div class="property-gallery">
                 <div class="main-image">
-                    <img src="/placeholder.svg?height=400&width=600" alt="Living room with gray sofa and coffee table">
+                    <img src="../add card/<?php echo htmlspecialchars($apartment['image']); ?>" alt="Apartment Image">
                 </div>
                 <div class="gallery-grid">
                     <div class="gallery-item">
@@ -57,22 +61,21 @@ session_start();
             </div>
 
             <div class="property-details">
-                <h1 class="property-title">Beautiful university apartment in Villeurbanne</h1>
-                <p class="property-address">106 rue bonnet, Villeurbanne, 69100, Lyon</p>
+                <h1 class="property-title"><?php echo htmlspecialchars($apartment['property_type']); ?></h1>
+                <p class="property-address"><?php echo htmlspecialchars($apartment['location']); ?></p>
+                <p class="property-description"><?php echo htmlspecialchars($apartment['description']); ?></p>
+                <p class="property-price">Price: <?php echo htmlspecialchars($apartment['price']); ?> DA</p>
+                <p class="property-amenities">Amenities: <?php echo htmlspecialchars($apartment['amenities']); ?></p>
+                <p class="property-bedrooms">Bedrooms: <?php echo htmlspecialchars($apartment['bedrooms']); ?></p>
+                <p class="property-bathrooms">Bathrooms: <?php echo htmlspecialchars($apartment['bathrooms']); ?></p>
                 <div class="property-owner">
-                    <span>Owner:</span> Masson 
-                    <div class="rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
+                    <span>Price:</span> <?php echo htmlspecialchars($apartment['price']); ?> DA
                 </div>
 
                 <div class="property-info">
                     <div class="info-left">
                         <h2>About this accommodation</h2>
-                        <p>A smoke-free apartment featuring laundry facilities and a fully equipped kitchen with a refrigerator, oven, stovetop, and microwave. It includes a washer/dryer, a separate dining area, and entertainment options such as cable TV and Netflix.</p>
+                        <p><?php echo htmlspecialchars($apartment['amenities']); ?></p>
                         
                         <h2>Rules and access method</h2>
                         <ul class="rules-list">

@@ -4,7 +4,9 @@ if (!isset($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
 ?>
-
+$base_url = "http://localhost/room-booking-website/home%20page/";
+header("Location: " . $base_url);
+exit;
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,51 +18,28 @@ if (!isset($_SESSION['csrf_token'])) {
 <body>
     <header class="header">
         <div class="logo">
-            <a href="../home page/index.html">
-                DZ HOUSE
-            </a>
+            <a href="../home page/index.html">DZ HOUSE</a>
         </div>
         <nav class="nav">
             <a href="../booking page/index.html">Book</a>
             <a href="Publish an ad">Publish an ad</a>
             <a href="Help">Help</a>
             <a href="#" onclick="openLoginModal()">Login ▸</a>
-
-            <!--pop up winw-->
-            <div id="loginModal" class="pop">
-              <div class="pop-content">
-                <span class="close" onclick="closeLoginModal()">&times;</span>
-                <h2>Login</h2>
-                <form>
-                  <label>Username</label><br>
-                  <input type="text"><br><br>
-                  <label>Password</label><br>
-                  <input type="password"><br><br>
-                  <button type="submit">Login</button>
-                </form>
-              </div>
-            </div>
-                        <a href="profile">
+            <a href="profile">
                 <img src="" alt="">
             </a>           
         </nav>
-        <script>
-            function openLoginModal() {
-              document.getElementById("loginModal").style.display = "block";
-            }
-            function closeLoginModal() {
-              document.getElementById("loginModal").style.display = "none";
-            }
-            </script>  
     </header>
+
     <div class="search-background">
         <div class="search-container">
-        <input type="meh" placeholder="Location">
-        <input type="beh" placeholder="Dates">
-        <input type="cheh" placeholder="People">
-        <button class="search-btn">Search</button>
+            <input type="text" placeholder="Location">
+            <input type="text" placeholder="Dates">
+            <input type="text" placeholder="People">
+            <button class="search-btn">Search</button>
         </div>
     </div>
+
     <div class="filter">
         <div class="filter-options">
             <label for="sort">Sort by:</label>
@@ -70,124 +49,63 @@ if (!isset($_SESSION['csrf_token'])) {
             </select>
         </div>
     </div>
-    <div class="add-card-container">
-        <button id="add-card-btn" class="add-card-btn">Add New Card</button>
-    </div>
+
+    <!-- Dynamic Listings Section -->
     <section class="listings">
-        <div class="listing-card">
-            <div class="like-btn-container">
-                <button class="like-btn"></button>
+        <?php
+        $conn = new mysqli('localhost', 'root', '', 'login_system');
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        $result = $conn->query("SELECT * FROM properties ORDER BY id DESC");
+
+        while ($row = $result->fetch_assoc()):
+        ?>
+            <div class="listing-card">
+                <div class="like-btn-container">
+                    <button class="like-btn"></button>
+                </div>
+                <img src="../add card/<?php echo htmlspecialchars($row['image']); ?>" alt="Room Image">
+                <a href="../apartment details/index.php?id=<?php echo $row['id']; ?>">
+                    <h3><?php echo htmlspecialchars($row['property_type']); ?></h3>
+                    <p><?php echo htmlspecialchars($row['location']); ?></p>
+                    <p><span class="rating">★</span> <?php echo htmlspecialchars($row['amenities']); ?></p>
+                    <p class="price"><?php echo htmlspecialchars($row['price']);?> DA</p>
+                </a>
             </div>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQd9kGl3tRP4NToluVBrGaXBBMooz8uRmF4cw&s" alt="Room Image">
-            <a href="room details">
-                <h3>Residotel Lyon Part Dieu</h3>
-                <p>3e arrondissement</p>
-                <p><span class="rating">8.0</span> Très bien (972 avis)</p>
-                <p class="price">473€ <span class="old-price">468€</span></p>
-            </a>
-        </div>
-        <div class="listing-card">
-            <div class="like-btn-container">
-                <button class="like-btn"></button>
-            </div>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIMgdVNfF_mbv_WdanDTiPTVpYmSFJuJAFdQ&s" alt="Room Image">
-            <a href="room details">
-                <h3>Tout près de Lyon dans la verdure avec les lamas !!!</h3>
-                <p>Oullins</p>
-                <p><span class="rating">9.8</span> Exceptionnel (29 avis)</p>
-                <p class="price">2629€</p>
-            </a>
-        </div>
-        <div class="listing-card">
-            <div class="like-btn-container">
-                <button class="like-btn"></button>
-            </div>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuaFEX3oOvpkr_jdtAt2JeC64G5YNgnRuXaw&s" alt="Room Image">
-            <a href="room details">
-                <h3>CROIX ROUSSE CENTRE</h3>
-                <p>La Croix-Rousse</p>
-                <p><span class="rating">10.0</span> Exceptionnel (11 avis)</p>
-                <p class="price">753€</p>
-            </a>
-        </div>
-        <div class="listing-card">
-            <div class="like-btn-container">
-                <button class="like-btn"></button>
-            </div>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuaFEX3oOvpkr_jdtAt2JeC64G5YNgnRuXaw&s" alt="Room Image">
-            <a href="room details">
-                <h3>CROIX ROUSSE CENTRE</h3>
-                <p>La Croix-Rousse</p>
-                <p><span class="rating">10.0</span> Exceptionnel (11 avis)</p>
-                <p class="price">753€</p>
-            </a>
-        </div>
-        <div class="listing-card">
-            <div class="like-btn-container">
-                <button class="like-btn"></button>
-            </div>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTg3iKko8U-5F-oEfMojQgpZZ548_c-ER5Y_g&s" alt="Room Image">
-            <a href="room details">
-                <h3>Curiosité - 2 chambres- proche Opéra</h3>
-                <p>La Presqu'Île</p>
-                <p><span class="rating">10.0</span> Exceptionnel (12 avis)</p>
-                <p class="price">1502€</p>
-            </a>    
-        </div>
+        <?php endwhile; ?>
     </section>
-    <hr>
-    <div class="info-container">
-        <div class="info-card">
-            <div class="info-icon">🔒</div>
-            <h3>Vos vacances en toute tranquillité</h3>
-            <p>Bénéficiez d'une assistance 24 h/24, 7 j/7 avec notre Garantie réservation en toute confiance.</p>
+
+    <footer>
+        <div class="footer-section">
+            <h3>About HomeAway</h3>
+            <ul>
+                <li><a href="Post a Listing">Post a Listing</a></li>
+                <li><a href="Trust & Safety">Trust & Safety</a></li>
+                <li><a href="Partner Resources">Partner Resources</a></li>
+                <li><a href="Travel Guides">Travel Guides</a></li>
+            </ul>
         </div>
-        <div class="info-card">
-            <div class="info-icon">🎒</div>
-            <h3>Plus de moments inoubliables</h3>
-            <p>De la planification au séjour, vivez une expérience de réservation facile et agréable.</p>
+        <div class="footer-section">
+            <h3>Company</h3>
+            <ul>
+                <li><a href="Who are we?">Who are we?</a></li>
+                <li><a href="Affiliation / Contact us">Affiliation / Contact us</a></li>
+                <li><a href="Terms of use">Terms of use</a></li>
+                <li><a href="Privacy policy">Privacy policy</a></li>
+            </ul>
         </div>
-        <div class="info-card">
-            <div class="info-icon">☕</div>
-            <h3>Toute l'intimité d'une maison</h3>
-            <p>Profitez de cuisines complètes, de piscines, de jardins et plus encore.</p>
+        <div class="footer-section">
+            <h3>Meet our family</h3>
+            <ul>
+                <li><a href="Vrbo">Vrbo</a></li>
+                <li><a href="Abritel.fr">Abritel.fr</a></li>
+                <li><a href="FeWo-direkt.de">FeWo-direkt.de</a></li>
+                <li><a href="Bookabach.co.nz">Bookabach.co.nz</a></li>
+            </ul>
         </div>
-        <div class="info-card">
-            <div class="info-icon">😊</div>
-            <h3>Bien plus qu'une location</h3>
-            <p>Plus d'espace, d'intimité et tous les équipements dont vous avez besoin.</p>
-        </div>
-    </div>
-<hr>
-<footer>
-    <div class="footer-section">
-        <h3>About HomeAway</h3>
-        <ul>
-            <li><a href="Post a Listing">Post a Listing</a></li>
-            <li><a href="Trust & Safety">Trust & Safety</a></li>
-            <li><a href="Partner Resources">Partner Resources</a></li>
-            <li><a href="Travel Guides">Travel Guides</a></li>
-        </ul>
-    </div>
-    <div class="footer-section">
-        <h3>Company</h3>
-        <ul>
-            <li><a href="Who are we?">Who are we?</a></li>
-            <li><a href="Affiliation / Contact us">Affiliation / Contact us</a></li>
-            <li><a href="Terms of use">Terms of use</a></li>
-            <li><a href="Privacy policy">Privacy policy</a></li>
-        </ul>
-    </div>
-    <div class="footer-section">
-        <h3>Meet our family</h3>
-        <ul>
-            <li><a href="Vrbo">Vrbo</a></li>
-            <li><a href="Abritel.fr">Abritel.fr</a></li>
-            <li><a href="FeWo-direkt.de">FeWo-direkt.de</a></li>
-            <li><a href="Bookabach.co.nz">Bookabach.co.nz</a></li>
-        </ul>
-    </div>
-</footer>
-<script src="script.js"></script>
+    </footer>
+    <script src="script.js"></script>
 </body>
 </html>

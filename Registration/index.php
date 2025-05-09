@@ -1,6 +1,7 @@
 <?php
 session_start();
 ?>
+$base_url = "http://localhost/room-booking-website/Registration/";
 
 <html lang="en">
 <head>

@@ -1,4 +1,6 @@
 <?php
+#$base_url = "http://localhost/room-booking-website/login/";
+
 session_start();
 ?>
 

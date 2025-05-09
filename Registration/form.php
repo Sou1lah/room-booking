@@ -18,10 +18,22 @@ $email = $conn->real_escape_string(trim($_POST['email']));
 $password = password_hash(trim($_POST['password']), PASSWORD_BCRYPT);
 $address = $conn->real_escape_string(trim($_POST['address']));
 // Handle file upload
+$uploadDir = __DIR__ . '/uploads/';
+if (!is_dir($uploadDir)) {
+    if (!mkdir($uploadDir, 0755, true)) {
+        die("Failed to create uploads directory. Check permissions.");
+    }
+}
+
+if (!is_writable($uploadDir)) {
+    die("Uploads directory is not writable. Check permissions.");
+}
+
 if (isset($_FILES['profile-photo']) && $_FILES['profile-photo']['error'] === UPLOAD_ERR_OK) {
     $photoTmpPath = $_FILES['profile-photo']['tmp_name'];
-    $photoName = basename($_FILES['profile-photo']['name']);
-    $photoUploadPath = 'uploads/' . $photoName;
+    $photoName = uniqid() . '_' . basename($_FILES['profile-photo']['name']); // Ensure unique file name
+    $photoUploadPath = $uploadDir . $photoName;
+
     if (!move_uploaded_file($photoTmpPath, $photoUploadPath)) {
         die("Failed to upload profile photo.");
     }
