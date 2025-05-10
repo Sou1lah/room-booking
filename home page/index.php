@@ -61,17 +61,21 @@ exit;
         $result = $conn->query("SELECT * FROM properties ORDER BY id DESC");
 
         while ($row = $result->fetch_assoc()):
+            // Decode the JSON string to get the array of image paths
+            $imagePaths = json_decode($row['image'], true);
+            // Use the first image in the array
+            $mainImage = isset($imagePaths[0]) ? $imagePaths[0] : 'default.jpg'; // Fallback to 'default.jpg' if no images exist
         ?>
             <div class="listing-card">
                 <div class="like-btn-container">
                     <button class="like-btn"></button>
                 </div>
-                <img src="../add card/<?php echo htmlspecialchars($row['image']); ?>" alt="Room Image">
+                <img src="../add card/<?php echo htmlspecialchars($mainImage); ?>" alt="Room Image">
                 <a href="../apartment details/index.php?id=<?php echo $row['id']; ?>">
                     <h3><?php echo htmlspecialchars($row['property_type']); ?></h3>
                     <p><?php echo htmlspecialchars($row['location']); ?></p>
                     <p><span class="rating">★</span> <?php echo htmlspecialchars($row['amenities']); ?></p>
-                    <p class="price"><?php echo htmlspecialchars($row['price']);?> DA</p>
+                    <p class="price"><?php echo htmlspecialchars($row['price']); ?> DA</p>
                 </a>
             </div>
         <?php endwhile; ?>

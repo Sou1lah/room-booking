@@ -12,7 +12,7 @@ include 'form.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>'(<?php echo htmlspecialchars($apartment['location']); ?></title>
+    <title><?php echo htmlspecialchars($apartment['location']); ?></title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -38,21 +38,14 @@ include 'form.php';
         <div class="container">
             <div class="property-gallery">
                 <div class="main-image">
-                    <img src="../add card/<?php echo htmlspecialchars($apartment['image']); ?>" alt="Apartment Image">
+                    <img src="../add card/<?php echo htmlspecialchars($imagePaths[0]); ?>" alt="Main Apartment Image">
                 </div>
                 <div class="gallery-grid">
-                    <div class="gallery-item">
-                        <img src="/placeholder.svg?height=200&width=300" alt="Bathroom">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="/placeholder.svg?height=200&width=300" alt="Bedroom with green wall">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="/placeholder.svg?height=200&width=300" alt="Another room">
-                        <div class="image-count">
-                            <i class="fas fa-images"></i> 11+
+                    <?php foreach ($imagePaths as $imagePath): ?>
+                        <div class="gallery-item">
+                            <img src="../add card/<?php echo htmlspecialchars($imagePath); ?>" alt="Apartment Image">
                         </div>
-                    </div>
+                    <?php endforeach; ?>
                 </div>
                 <div class="gallery-actions">
                     <button class="share-btn"><i class="fas fa-share-alt"></i> Partager</button>

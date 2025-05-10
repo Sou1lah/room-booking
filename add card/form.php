@@ -18,8 +18,8 @@ $bathrooms = $conn->real_escape_string(trim($_POST['bathrooms'] ?? ''));
 $amenities = $conn->real_escape_string(trim($_POST['amenities'] ?? ''));
 $description = $conn->real_escape_string(trim($_POST['description'] ?? ''));
 
-// Handle single image upload
-$imagePath = null;
+// Handle individual image uploads
+$imagePaths = [];
 $uploadDir = __DIR__ . '/uploads/'; // Use absolute path based on the current directory
 if (!is_dir($uploadDir)) {
     if (!mkdir($uploadDir, 0755, true)) {
@@ -27,18 +27,22 @@ if (!is_dir($uploadDir)) {
     }
 }
 
-if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-    $fileName = uniqid() . '_' . basename($_FILES['image']['name']); // Generate unique file name
-    $filePath = $uploadDir . $fileName;
+for ($i = 1; $i <= 4; $i++) {
+    $imageKey = "image$i";
+    if (isset($_FILES[$imageKey]) && $_FILES[$imageKey]['error'] === UPLOAD_ERR_OK) {
+        $fileName = uniqid() . '_' . basename($_FILES[$imageKey]['name']); // Generate unique file name
+        $filePath = $uploadDir . $fileName;
 
-    if (move_uploaded_file($_FILES['image']['tmp_name'], $filePath)) {
-        $imagePath = 'uploads/' . $fileName; // Relative path for database
-    } else {
-        die("❌ Failed to upload image: " . htmlspecialchars($_FILES['image']['name']));
+        if (move_uploaded_file($_FILES[$imageKey]['tmp_name'], $filePath)) {
+            $imagePaths[] = 'uploads/' . $fileName; // Relative path for database
+        } else {
+            die("❌ Failed to upload image: " . htmlspecialchars($_FILES[$imageKey]['name']));
+        }
     }
-} else {
-    die("❌ Error with file upload: " . $_FILES['image']['error']);
 }
+
+// Convert image paths array to a JSON string for storage
+$imagePathsJson = json_encode($imagePaths);
 
 // Insert property details into the database
 $sql = "INSERT INTO properties (property_type, location, price, bedrooms, bathrooms, amenities, description, image) 
@@ -49,7 +53,7 @@ if (!$stmt) {
     die("SQL error: " . $conn->error);
 }
 
-$stmt->bind_param("ssdiisss", $propertyType, $location, $price, $bedrooms, $bathrooms, $amenities, $description, $imagePath);
+$stmt->bind_param("ssdiisss", $propertyType, $location, $price, $bedrooms, $bathrooms, $amenities, $description, $imagePathsJson);
 
 if ($stmt->execute()) {
     echo "✅ Apartment added successfully!";

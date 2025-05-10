@@ -2,6 +2,7 @@
 session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
+
 // Check if the 'id' parameter exists in the URL
 if (!isset($_GET['id'])) {
     die('Apartment ID is required.');
@@ -29,6 +30,9 @@ if ($result->num_rows == 0) {
 
 // Fetch apartment details
 $apartment = $result->fetch_assoc();
+
+// Decode the JSON string of image paths
+$imagePaths = json_decode($apartment['image'], true);
 
 // Close the statement and connection
 $stmt->close();

@@ -1,9 +1,7 @@
 <?php
 session_start();
+#$base_url = "http://localhost/room-booking-website/add%20card/";
 ?>
-$base_url = "http://localhost/room-booking-website/add%20card/";
-header("Location: " . $base_url);
-exit();
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,7 +48,23 @@ exit();
             </div>
             <div class="form-group">
                 <label for="image">Upload Images</label>
-                <input type="file" id="image" name="image" accept="image/*">
+                <input type="file" id="image" name="image[]" accept="image/*" multiple>
+            </div>
+            <div class="form-group">
+                <label for="image1">Upload Photo 1</label>
+                <input type="file" id="image1" name="image1" accept="image/*" required>
+            </div>
+            <div class="form-group">
+                <label for="image2">Upload Photo 2</label>
+                <input type="file" id="image2" name="image2" accept="image/*">
+            </div>
+            <div class="form-group">
+                <label for="image3">Upload Photo 3</label>
+                <input type="file" id="image3" name="image3" accept="image/*">
+            </div>
+            <div class="form-group">
+                <label for="image4">Upload Photo 4</label>
+                <input type="file" id="image4" name="image4" accept="image/*">
             </div>
             <div class="form-group">
                 <button type="submit">Add Apartment</button>
